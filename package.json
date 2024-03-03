@@ -1,0 +1,12 @@
+{
+    "name": "message-board",
+    "version": "1.0.0",
+    "description": "Simple message board application",
+    "main": "main.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0"
+    }
+}
