@@ -1,21 +1,29 @@
-
-const http = require('http');
-
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
+const port = 3000;
 
-app.use((req,res) => {
-    console.log("In the middleware!");
-    next();
-})
 
-app.use((req,res) => {
-    console.log("In another middleware!");
-})
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// const routes = require('./routes');
 
-const server = http.createServer(routes);
+app.get('/add-product', (req, res) => {
+    res.send('<form action="/add-product" method="POST">' +
+        '<input type="text" name="product" placeholder="Product">' +
+        '<input type="text" name="size" placeholder="Size">' +
+        '<button type="submit">Add Product</button></form>');
+});
 
-server.listen(3000);
+
+app.post('/add-product', (req, res) => {
+    const product = req.body.product;
+    const size = req.body.size;
+    console.log('New product:', product, 'Size:', size);
+    res.redirect('/'); 
+});
+
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
